@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<html>
+<head>
+    <title>欢迎来到登陆页--完成登录享受快乐</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .tips {
+            height: 20px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .error_tips {
+            padding: 5px;
+            border: 1px solid #dad699;
+            background: #f9f5c7;
+            position: absolute;
+            border-radius: 2px;
+            margin: 0 auto;
+            display: none;
+        }
+
+            .error_tips .error_logo {
+                position: absolute;
+                left: 3px;
+                height: 18px;
+                line-height: 18px;
+                width: 18px;
+                background: url('~/images/errortips.png') no-repeat;
+                _background: url('~/images/errortips.png') no-repeat;
+            }
+
+            .error_tips .err_m {
+                display: inline-block;
+                padding-left: 20px;
+                line-height: 18px;
+                color: #434343;
+                vertical-align: middle;
+                text-align: left;
+            }
+
+        .loading_tips {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div  style="margin-top:20px;">
+        <div class="col-xs-12">
+            <div class="col-xs-4">
+
+            </div>
+            <div class="col-xs-4 text-center" style="border-bottom:solid 1px #ccc">
+                @if (Model != null)
+                {
+                    <p class="col-xs-12">
+                        <img style="max-width:120px;" src="~/images/client-default.png" />
+                    </p>
+                    <p class="col-xs-12"><h5>您将登录到 <strong>@Model.ClientName </strong></h5>  </p>
+
+                }
+                else
+                {
+                    <p class="col-xs-12">
+                        <img style="max-width:120px;" src="~/images/client-default.png" />
+                    </p>
+                    <p class="col-xs-12"><h5>您将登录到 <strong>系统服务平台 </strong></h5> </p>
+                }
+            </div>
+            <div class="col-xs-4">
+
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-4">
+
+            </div>
+            <div class="col-xs-4">
+
+                <form id="loginForm" class="form-horizontal" action="~/home/login" method="post">
+                    <div class="form-group col-xs-12 ">
+                        <div class="col-xs-3  col-sm-4"></div>
+                        <div class="tips col-xs-9 col-sm-8">
+                            <div class="error_tips" id="error_tips">
+                                <span class="error_logo"></span>
+                                <span class="err_m" id="err_message"></span>
+                            </div>
+                            <div class="loading_tips" id="loading_tips">
+                                <img id="loading_img" src="https://ui.ptlogin2.qq.com/style/0/images/load.gif" />
+                                <span id="loading_wording">登录中</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <label class="col-xs-3  col-sm-4 control-label">用户名:</label>
+                        <div class="col-xs-9 col-sm-8"><input type="text" class="form-control required" name="username" required-msg="请输入用户名！" placeholder="用户名" /></div>
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <label class="col-xs-3 col-sm-4 control-label">密码:</label>
+                        <div class="col-xs-9 col-sm-8"><input type="password" class="form-control required" name="password" required-msg="请输入密码！" placeholder="密码" /></div>
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <div class="col-xs-3  col-sm-4"></div>
+                        <div class="col-xs-9 col-sm-8">
+                            <button type="submit" class="btn btn-success">login</button>
+                            @if (Model != null)
+                            {
+                                <input type="hidden" id="appkey" name="appkey" value="@Model.ClientKey" />
+                            }
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-4">
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/jquery.form.min.js"></script>
+    <script src="~/Scripts/jquery.blockUI.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var common = {
+                blockOptions: {
+                    message: '',
+                    css: { backgroundColor: 'transparent', border: 0 },
+                    overlayCSS: { opacity: 0.4, backgroundColor: '#fff' }
+                },
+                hideError: function () {
+                    $("#error_tips").hide();
+                },
+                showError: function (msg) {
+                    $("#err_message").text(msg);
+                    $("#error_tips").show();
+                },
+                showLoading: function () {
+                    $("#loading_tips").show();
+                },
+                hideLoading: function () {
+                    $("#loading_tips").hide();
+                }
+            };
+
+            var options = {
+                success: function (data) {
+                    alert(data.message);
+                    if (data.success) {
+                        window.location.href = data.url;
+                    }
+                    else {
+                        common.hideLoading();
+                        $("#loginForm").unblock();
+                    }
+                },
+                error: function (data) {
+                    common.showError("通信失败!");
+                    common.hideLoading();
+                },
+                beforeSubmit: function () {
+                    console.log('beforesubmit');
+                }
+            }
+            $("#loginForm").submit(function () {
+                $("#loginForm").block(common.blockOptions);
+                var valid = true;
+                $(".required").each(function () {
+                    if ($.trim($(this).val().length) == 0) {
+                        valid = false;
+                        common.showError($(this).attr("required-msg"));
+                        $("#loginForm").unblock();
+                        return false;
+                    }
+                });
+                if (valid) {
+                    common.hideError();
+                    common.showLoading();
+                    $(this).ajaxSubmit(options);
+                }
+                return false;
+            })
+        });
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,33 @@
+﻿@model List<sso.demo0.com.Models.SSOClients>
+@{
+    Layout = null;  
+}
+<html>
+<head>
+    <title>系统列表</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .systems img {
+            max-width: 120px;
+            height:120px;
+        }
+        .systems a:hover {
+            outline: 3px #225a68 solid;
+        }
+    </style>
+</head>
+<body>
+    <h2>Systems</h2>
+    <div class="col-xs-12 systems text-center">
+        @foreach (var c in Model)
+        {
+            <a class="col-xs-2" href="@c.ClientUrl">
+                <div class="col-xs-12">
+                    <img src="~/images/@( string.IsNullOrEmpty(c.ClientIcon) ? "client-default.png" : c.ClientIcon)" />
+                </div>
+                <h3><strong>@c.ClientName </strong></h3>
+            </a>
+        }
+    </div>
+</body>
+</html>

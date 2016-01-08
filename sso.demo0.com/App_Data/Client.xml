@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Clients>
+  <Client ID="1">
+    <Name>client1</Name>
+    <Icon></Icon>
+    <Url>http://client1.demo0.com</Url>
+    <Key>zpp7dhhca4iqpfutwjorjovddh+cb2f3</Key>
+    <Status>1</Status>
+  </Client>
+  <Client ID="2">
+    <Name>client2</Name>
+    <Icon>client2</Icon>
+    <Url>http://client2.demo0.com</Url>
+    <Key>rl1rzsq/h3iqpfutwjorjovddh+cb2f3</Key>
+    <Status>1</Status>
+  </Client>
+  <Client ID="3">
+    <Name>client3</Name>
+    <Icon>orderedList0.png</Icon>
+    <Url>http://client1.demo0.com</Url>
+    <Key></Key>
+    <Status>1</Status>
+  </Client>
+  <Client ID="4">
+    <Name>client4</Name>
+    <Icon>orderedList1.png</Icon>
+    <Url>http://client1.demo0.com</Url>
+    <Key></Key>
+    <Status>1</Status>
+  </Client>
+  <Client ID="5">
+    <Name>client5</Name>
+    <Icon>orderedList2.png</Icon>
+    <Url>http://client1.demo0.com</Url>
+    <Key></Key>
+    <Status>1</Status>
+  </Client>
+  <Client ID="6">
+    <Name>client6</Name>
+    <Icon>orderedList3.png</Icon>
+    <Url>http://client1.demo0.com</Url>
+    <Key></Key>
+    <Status>1</Status>
+  </Client>
+  <Client ID="7">
+    <Name>client7</Name>
+    <Icon>orderedList4.png</Icon>
+    <Url>http://client1.demo0.com</Url>
+    <Key></Key>
+    <Status>1</Status>
+  </Client>
+  <Client ID="8">
+    <Name>client8</Name>
+    <Icon>orderedList5.png</Icon>
+    <Url>http://client1.demo0.com</Url>
+    <Key></Key>
+    <Status>1</Status>
+  </Client>
+  <Client ID="9">
+    <Name>client9</Name>
+    <Icon>orderedList6.png</Icon>
+    <Url>http://client1.demo0.com</Url>
+    <Key></Key>
+    <Status>1</Status>
+  </Client>
+  <Client ID="10">
+    <Name>client10</Name>
+    <Icon>orderedList7.png</Icon>
+    <Url>http://client1.demo0.com</Url>
+    <Key></Key>
+    <Status>1</Status>
+  </Client>
+</Clients>

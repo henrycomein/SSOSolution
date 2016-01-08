@@ -1,0 +1,16 @@
+﻿@Model Models.SSOClients
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div>
+    @foreach (var c in Model)
+    {
+        <div>
+            Name:@c.ClientName  |  AppKey: @c.ClientKey  |Url :@c.ClientUrl
+        
+        </div>
+    }
+
+</div>
